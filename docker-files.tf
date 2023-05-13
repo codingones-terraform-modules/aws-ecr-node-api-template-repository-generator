@@ -1,6 +1,6 @@
 resource "github_repository_file" "dockerfile" {
-  repository          = github_repository.repository.name
-  branch              = github_branch_default.main.branch
+  repository          = module.repository.repository_name
+  branch              = module.repository.default_branch_name
   file                = "Dockerfile"
   content             = data.http.dockerfile_template.response_body
   commit_message      = "feat: adding Dockerfile"
@@ -10,8 +10,8 @@ resource "github_repository_file" "dockerfile" {
 }
 
 resource "github_repository_file" "dockerignore" {
-  repository          = github_repository.repository.name
-  branch              = github_branch_default.main.branch
+  repository          = module.repository.repository_name
+  branch              = module.repository.default_branch_name
   file                = ".dockerignore"
   content             = data.http.dockerignore_template.response_body
   commit_message      = "feat: adding dockerignore"
